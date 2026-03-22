@@ -1,0 +1,23 @@
+- name: bastion_mongodb
+  port: 22
+  src: "0.0.0.0/32" or internet
+  dest: bastion
+
+
+- name: mongodb_catalogue # mongodb accating request from catalogue
+  port: 27017
+  src: catalogue
+  dest: mongodb
+
+- name: mongodb_user # mongodb accating request from user
+  port: 27017
+  src: user
+  dest: mongodb
+
+
+- name: redis_cart  # redis accating request from cart
+  port: 27017
+  src: cart
+  dest: redis
+
+  
