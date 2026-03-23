@@ -52,4 +52,20 @@ resource "aws_security_group_rule" "mongodb_user" {
 
 
 
+resource "aws_security_group_rule" "redis_cart" {
+    type            = "ingress"
+    from_port       = 27017
+    to_port         = 27017
+    protocol        = "tcp"
+    source_security_group_id = local.cart_sg_id
+    #cidr_blocks     = ["0.0.0.0/0"]
+    #cider_blocks = [local.my_ip]
+
+    # here we need to give security group id
+    security_group_id = local.redis_sg_id
+}
+
+
+
+
 
