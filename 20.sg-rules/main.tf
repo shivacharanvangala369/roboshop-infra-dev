@@ -109,3 +109,19 @@ resource "aws_security_group_rule" "mysql_bastion" {
 }
 
 
+####################### Rabbitmq #########
+
+resource "aws_security_group_rule" "rabbitmq_bastion" {
+    type            = "ingress"
+    from_port       = 22
+    to_port         = 22
+    protocol        = "tcp"
+    source_security_group_id = local.bastion_sg_id
+    #cidr_blocks     = ["0.0.0.0/0"]
+    #cider_blocks = [local.my_ip]
+
+    # here we need to give security group id
+    security_group_id = local.rabbitmq_sg_id
+}
+
+
