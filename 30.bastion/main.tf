@@ -4,6 +4,16 @@ resource "aws_instance" "bastion" {
   subnet_id = local.pub_sub_id
   vpc_security_group_ids =  [local.bastion_sg_id]
   iam_instance_profile = aws_iam_instance_profile.bastion.name
+  root_block_device {
+    volume_size = 50
+    volume_type = "gp3"
+    tags = merge(
+      {
+          Name = "${var.project}-${var.environment}-bastion"
+      },
+    local.common_tags
+  )
+  }
   
 
   tags = merge(
@@ -44,7 +54,7 @@ resource "aws_iam_role" "bastion" {
 }
 
 
-resource "aws_iam_role_policy_attachment" "bastion-attach" {
+resource "aws_iam_role_policy_attachment" "bastion" {
   role       = aws_iam_role.bastion.name
   policy_arn = "arn:aws:iam::aws:policy/AdministratorAccess" 
 }
