@@ -51,6 +51,20 @@ resource "aws_security_group_rule" "mongodb_user" {
 }
 
 
+################# Redis ######################3
+
+resource "aws_security_group_rule" "redis_bastion" {
+    type            = "ingress"
+    from_port       = 22
+    to_port         = 22
+    protocol        = "tcp"
+    source_security_group_id = local.cart_sg_id
+    #cidr_blocks     = ["0.0.0.0/0"]
+    #cider_blocks = [local.my_ip]
+
+    # here we need to give security group id
+    security_group_id = local.redis_sg_id
+}
 
 resource "aws_security_group_rule" "redis_cart" {
     type            = "ingress"
