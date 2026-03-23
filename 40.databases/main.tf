@@ -42,6 +42,8 @@ resource "terraform_data" "bootstrap" {
 }
 
 #####################       Redis   #########################
+
+
 resource "aws_instance" "redis" {
   ami           = local.ami_id
   instance_type = "t3.micro"
@@ -86,6 +88,8 @@ resource "terraform_data" "bootstrap_redis" {
 }
 
 #####################      Mysql  #########################
+
+
 resource "aws_instance" "mysql" {
   ami           = local.ami_id
   instance_type = "t3.micro"
