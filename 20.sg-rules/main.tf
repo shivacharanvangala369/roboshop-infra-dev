@@ -68,8 +68,8 @@ resource "aws_security_group_rule" "redis_bastion" {
 
 resource "aws_security_group_rule" "redis_cart" {
     type            = "ingress"
-    from_port       = 27017
-    to_port         = 27017
+    from_port       = 6379
+    to_port         = 6379
     protocol        = "tcp"
     source_security_group_id = local.cart_sg_id
     #cidr_blocks     = ["0.0.0.0/0"]
