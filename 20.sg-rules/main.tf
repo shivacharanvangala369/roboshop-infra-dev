@@ -58,7 +58,7 @@ resource "aws_security_group_rule" "redis_bastion" {
     from_port       = 22
     to_port         = 22
     protocol        = "tcp"
-    source_security_group_id = local.cart_sg_id
+    source_security_group_id = local.bastion_sg_id
     #cidr_blocks     = ["0.0.0.0/0"]
     #cider_blocks = [local.my_ip]
 
