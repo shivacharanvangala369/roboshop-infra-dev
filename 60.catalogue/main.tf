@@ -42,8 +42,9 @@ resource "terraform_data" "bootstrap" {
 }
 
 
-action "aws_ec2_stop_instance" "catalogue" {
-  config {
-    instance_id = aws_instance.catalogue.id
-  }
+resource "aws_ec2_stop_instance" "catalogue" {
+ 
+  instance_id = aws_instance.catalogue.id
+  state = "stopped"
+
 }
