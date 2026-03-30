@@ -42,9 +42,16 @@ resource "terraform_data" "bootstrap" {
 }
 
 
-resource "aws_ec2_stop_instance" "catalogue" {
+resource "aws_ec2_instance_state" "catalogue" {
+  depends_on = [ terraform_data.catalogue ]
  
   instance_id = aws_instance.catalogue.id
   state = "stopped"
 
+}
+
+resource "aws_ami_from_instance" "catalogue" {
+  depends_on = [ aws_ec2_instance_state.catalogue ]
+  name = "${var.project}-${var.environment}-catalogue"
+  source_instance_id = aws_instance.catalogue.id
 }
