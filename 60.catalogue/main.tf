@@ -142,7 +142,7 @@ resource "aws_autoscaling_group" "catalogue" {
   force_delete              = false
   launch_template {
     id = aws_launch_template.catalogue.id
-    version = "latest"
+    version = "$latest"
   }
   
   vpc_zone_identifier       = [local.private_subnet_id]
